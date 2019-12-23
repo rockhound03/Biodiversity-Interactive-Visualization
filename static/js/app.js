@@ -98,7 +98,15 @@ var layout = {
   title: 'OTU Bubble Plot',
   showlegend: false,
   height: 600,
-  width: 900
+  width: 900,
+  xaxis: {
+    title: {
+      text: 'OTU ID'}},
+  yaxis:{
+    title:{
+      text: 'Sample Size'
+    }
+  }
 };
 
 Plotly.newPlot('bubble', data, layout);
