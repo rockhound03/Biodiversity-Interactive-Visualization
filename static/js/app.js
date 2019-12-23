@@ -4,7 +4,7 @@ var currentOtuIds;
 var currentSampleValues;
 var currentOtuLabels;
 
-d3.json("../../data/samples.json").then((data) => {
+d3.json("./samples.json").then((data) => {
   //console.log(data);
   //var name = data.names;
   var idlist = Object.values(data.names);
