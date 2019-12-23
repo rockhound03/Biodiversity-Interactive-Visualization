@@ -16,6 +16,7 @@ d3.json("../../data/samples.json").then((data) => {
   //console.log(idlist);
   buildMenu(idlist);
   console.log(sampleData);
+  updateInfo
 })
 
 d3.selectAll("#selDataset").on("change", updateInfo);
@@ -60,20 +61,30 @@ var barData = [{
   y: barLabels,
   orientation: 'h'
 }];
-
+var layout ={
+  title: 'Top Ten Samples',
+  annotations: [
+    {text:patientSorted[0].otu_labels}]
+}
 Plotly.newPlot('bar', barData);
 
 // Bubble Plot ***************************
+//var largestSampleSize = Math.max(patientSorted[0].sample_values);
 var bubbleSize = patientSorted[0].sample_values.map((sample) => {
-  return sample * 1.3;
+  return sample;
+});
+var maxID = Math.max(patientSorted[0].otu_ids);
+var altBubbleColors = patientSorted[0].otu_ids.map((id) =>{
+  return d3.interpolateYlGn(id / maxID);
 });
 var sampleSize = patientSorted[0].sample_values.length;
-var bubbleColors = patientSorted[0].sample_values.map((sample) =>{
+var bubbleColors = patientSorted[0].otu_ids.map((sample) =>{
   return d3.interpolateSinebow((sample + 1)/ sampleSize);
 })
 var trace1 = {
   x: patientSorted[0].otu_ids,
   y: patientSorted[0].sample_values,
+  text: patientSorted[0].otu_labels,
   mode: 'markers',
   marker: {
     color:bubbleColors,
