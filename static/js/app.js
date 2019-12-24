@@ -1,3 +1,4 @@
+// create global variables for sharing between functions.
 var metaData;
 var allSampleData;
 var currentOtuIds;
@@ -5,15 +6,11 @@ var currentSampleValues;
 var currentOtuLabels;
 
 d3.json("./data/samples.json").then((data) => {
-  //console.log(data);
-  //var name = data.names;
   var idlist = Object.values(data.names);
   var mData = data.metadata;
   metaData = mData;
   var sampleData = data.samples;
   allSampleData = sampleData;
-  //console.log(mData);
-  //console.log(idlist);
   buildMenu(idlist);
   console.log(sampleData);
   updateInfo
@@ -23,9 +20,6 @@ d3.selectAll("#selDataset").on("change", updateInfo);
 
 function buildMenu(ids){
 var menu = d3.select("#selDataset");
-
-  //var newItem = document.createElement("option");
-  //var tmenu = menu.append("option");
 var options = menu.selectAll("option")
   .data(ids)
   .enter()
@@ -49,6 +43,7 @@ var patientSorted = patientSample.sort(function sortFunction(a, b){
   return b.sample_values - a.sample_values;
 });
 // Bar Plot **************************
+// get top 10 samples, change order for descending bar chart.
 currentOtuIds = patientSorted[0].otu_ids.slice(0, 10);
 var reverseOtuIds = currentOtuIds.sort(function sortFunction(a, b){
   return a - b;
@@ -64,6 +59,7 @@ var reverseOtuLabels = currentOtuLabels.sort(function sortFunction(a, b){
 var barLabels = reverseOtuIds.map(function(label) {
   return `OTU ${label}`;
 });
+// create data objects for bar chart.
 var barData = [{
   type: 'bar',
   x: reverseSampleValues,
