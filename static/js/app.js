@@ -50,21 +50,30 @@ var patientSorted = patientSample.sort(function sortFunction(a, b){
 });
 // Bar Plot **************************
 currentOtuIds = patientSorted[0].otu_ids.slice(0, 10);
+var reverseOtuIds = currentOtuIds.sort(function sortFunction(a, b){
+  return a - b;
+});
 currentSampleValues = patientSorted[0].sample_values.slice(0, 10);
+var reverseSampleValues = currentSampleValues.sort(function sortFunction(a, b){
+  return a - b;
+});
 currentOtuLabels = patientSorted[0].otu_labels.slice(0, 10);
-var barLabels = currentOtuIds.map(function(label) {
+var reverseOtuLabels = currentOtuLabels.sort(function sortFunction(a, b){
+  return a - b;
+});
+var barLabels = reverseOtuIds.map(function(label) {
   return `OTU ${label}`;
 });
 var barData = [{
   type: 'bar',
-  x: currentSampleValues,
+  x: reverseSampleValues,
   y: barLabels,
   orientation: 'h'
 }];
 var layout ={
   title: 'Top Ten Samples',
   annotations: [
-    {text:patientSorted[0].otu_labels}]
+    {text:reverseOtuLabels}]
 }
 Plotly.newPlot('bar', barData);
 
