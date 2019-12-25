@@ -12,7 +12,7 @@ d3.json("./data/samples.json").then((data) => {
   var sampleData = data.samples;
   allSampleData = sampleData;
   buildMenu(idlist);
-  console.log(sampleData);
+  //console.log(sampleData);
   updateInfo
 })
 
@@ -37,7 +37,9 @@ options.text(function(d) {
 function updateInfo(){
 var dropdownMenu = d3.select("#selDataset");
 var selectedOption = dropdownMenu.property("value");
+//console.log(metaData);
 var patientData = metaData.filter(patient => patient.id == selectedOption);
+console.log(patientData);
 var patientSample = allSampleData.filter(sample => sample.id == selectedOption);
 var patientSorted = patientSample.sort(function sortFunction(a, b){
   return b.sample_values - a.sample_values;
@@ -115,12 +117,14 @@ var layout = {
 };
 
 Plotly.newPlot('bubble', data, layout);
-console.log(currentSampleValues);
-console.log(currentOtuIds);
-console.log(barLabels);
+//console.log(currentSampleValues);
+//console.log(currentOtuIds);
+//console.log(barLabels);
 //sample-metadata
 
 var tempArr = [];
+console.log(patientData);
+console.log("temp array launched.")
 tempArr.push(`id: ${patientData[0].id}`);
 tempArr.push(`ethnicity: ${patientData[0].ethnicity}`);
 tempArr.push(`gender: ${patientData[0].gender}`);
@@ -129,18 +133,21 @@ tempArr.push(`location: ${patientData[0].location}`);
 tempArr.push(`bbtype: ${patientData[0].bbtype}`);
 tempArr.push(`wfreq: ${patientData[0].wfreq}`);
 fillMetaData(tempArr);
+console.log(tempArr);
 //console.log(tempArr);
 //console.log(patientData);
 
 }
 
 function fillMetaData(pData){
+  console.log(pData);
   var metaPanel = d3.select("#sample-metadata");
-  var pData = metaPanel.selectAll("p")
+  var panel = metaPanel.selectAll("p").remove();
+  var newPanel = metaPanel.selectAll("p")
     .data(pData)
     .enter()
     .append("p");
-  pData.text(function(d){
+  newPanel.text(function(d){
     return d;
   })
 
