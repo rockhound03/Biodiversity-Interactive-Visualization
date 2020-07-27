@@ -12,8 +12,5 @@ Path for the project webpage:   https://rockhound03.github.io/Interactive-Visual
 1. Jupyter Notebooks, scipy.stats, JavaScript
 2. Node.js
 
-## Data Sources
-https://www.kaggle.com/roche-data-science-coalition/uncover
-
 ## Status
-ReactJS table created. Currently implementing filter and plotting.
+JavaScript interactive dashboard created. Filters by case id.
