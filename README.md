@@ -5,12 +5,13 @@ Data regarding population of bacteria breeding in belly buttons has been collect
 
 ## Solution:
 Using a combination of HTML, Bootstrap, Plotly and JavaScript an interface was created to interact with the data, visualizing the data for comparison.
+When the user selects the subject ID number the user demographic data, bubble plot and horizontal bar chart is populated with the corresponding data.
 
 Path for the project webpage:   https://rockhound03.github.io/Biodiversity-Interactive-Visualization/
 ## Installing
-### Tools Needed
-1. Jupyter Notebooks, scipy.stats, JavaScript
-2. Node.js
+### Tools Used
+1. HTML, JSON, JavaScript
+
 
 ## Status
-JavaScript interactive dashboard created. Filters by case id.
+JavaScript interactive dashboard created. Filters by  Subject ID No.
