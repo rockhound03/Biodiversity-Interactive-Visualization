@@ -1,4 +1,4 @@
-# Interactive-Visualization-Challenge
+# Interactive-Visualization-Visualization
 
 ## Problem:
 Data regarding population of bacteria breeding in belly buttons has been collected and stored in a json file.  It is difficult to read / access.  The data needs to be made viewable so that researchers can access and interpret the data.
